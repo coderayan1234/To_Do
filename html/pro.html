@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    
+</head>
+<body>
+    <h1>ENTER ITEM</h1>
+ 
+    <input type="text" id="new-task" >
+    <button onclick="addTask()">Add</button>
+    <ul id="task-list"></ul>
+    <button id="clearall">Clear All</button>
+    <div>Total task</div>
+    <div id="count"></div>
+    
+
+    
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById('new-task');
+            const taskText = taskInput.value.trim();
+        
+            if (taskText === '') {
+                alert('Please enter a task.');
+                return;
+            }
+        
+            const taskList = document.getElementById('task-list');
+        
+            const listItem = document.createElement('li');
+            listItem.textContent = taskText;
+            count();
+        
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = function () {
+                taskList.removeChild(listItem);
+                count();
+            };
+        
+            listItem.appendChild(deleteButton);
+            taskList.appendChild(listItem);
+        
+            taskInput.value = '';
+
+        }
+       
+
+          
+            document.getElementById('clearall').addEventListener('click', function() {
+                var taskList = document.getElementById('task-list');
+                taskList.innerHTML =``;
+    });
+        
+      function count(){
+        var taskList = document.getElementById('task-list');
+        var count = taskList.childElementCount +1;
+        document.getElementById('count').innerHTML = count;
+
+      }
+        
+
+        
+        
+    </script>
+</body>
+</html>
